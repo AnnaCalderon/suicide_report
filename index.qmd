@@ -1,11 +1,320 @@
 ---
-title: "suicide_report"
+title: "Suicide Trends"
+author: "Anna Calderon"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+format:
+  html:
+    toc: true
+    theme: cosmo
+    css: styles.css
 ---
 
-This is a Quarto website.
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+```{r setup, include=FALSE }
+knitr::opts_chunk$set(
+  echo = FALSE, include = FALSE, warning = FALSE, message = FALSE)
+```
 
 ```{r}
-1 + 1
+library(tidyverse)
+library(lubridate)
+library(janitor)
+
+library(ggrepel) 
+library(ggpmisc)
+options(scipen = 999)
+library(reactable)
+library(reactablefmtr)
+library(CGPfunctions)
+library(maps)
 ```
+
+
+
+```{r}
+national_data <- read.csv("data/national_rate_count_raw.csv") |> 
+  clean_names() |> 
+  mutate(date = ymd(year, truncated = 2L)) |> 
+    mutate(count = as.numeric(str_replace(count, ",", ""))) |> 
+  mutate(diff_start = (count - count[1])/count[1],
+         diff_yearly = (count - lag(count))/lag(count),
+         label = ifelse(year == "2000" | year == "2018" | year == "2020" | 
+                          year == "2022", as.character(round(rate_per_100_000, 1)), "")) 
+  
+fig_1 <- national_data |> 
+  ggplot(aes(x = date, y = rate_per_100_000, group = 1, label = label)) +
+  geom_line(color = "darkorange1", size = 1) +
+  geom_point(color = ifelse(national_data$label == "", "darkorange1", "black"))+
+  # stat_peaks(geom = "point",color = "black", size = 2) +
+  # stat_peaks(geom = "label", color = "black", angle = 0,
+  #            vjust = -0.1, 
+  #            ) +
+  # stat_valleys(geom = "point",color = "black", size = 2) +
+  # stat_valleys(geom = "label", color = "black", angle = 1,
+  #              vjust = -0.1, 
+  #              ) +
+  scale_x_date(date_labels = "%Y", breaks = "2 years") +
+  scale_y_continuous(
+    #labels = scales::label_number(accuracy = 0.1),
+                     limits = c(10, 14.5)) +
+  xlab("") +
+  ylab("") +
+  labs(title = "Rates per 100,000",
+              #caption= "Source: PMP(06/2023)"
+       ) +
+  theme(
+    text=element_text(family="Arial"),
+    aspect.ratio = 0.65,
+    plot.margin = unit(c(0, 0, 0, 0), "inches"),
+        plot.title = element_text(size = 11)
+  ) +
+  geom_text_repel()
+  
+
+
+
+
+```
+
+
+```{r}
+state_rate <- read_csv("data/states_rate_count.csv") |> 
+  clean_names() |> 
+  select(-url)
+
+
+
+current_states_map <- map_data("state") |> 
+  mutate(state = str_to_title(region)) |> 
+  select(state, long, lat, group) |> 
+  left_join(state_rate, by = join_by(state)) |> 
+  filter(year == "2020") |> 
+  mutate(age_adjusted_rate = age_adjusted_rate/100) |> 
+  ggplot(aes(long, lat)) +
+  geom_polygon(aes(fill = age_adjusted_rate, group = group), color = "white") + #
+  theme(
+    text=element_text(family="Arial"),
+    aspect.ratio = 0.65,
+    # legend.position = "bottom",
+    legend.position = c(0.92, 0.25),
+    legend.background = element_rect(fill = "gray91"),
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    plot.title = element_text(size = 11),
+    panel.background = element_rect(fill = "gray91", color = "gray91"),
+    panel.grid.major = element_line(color = "gray91", linetype = "blank"),
+    panel.grid.minor = element_line(color = "gray91", linetype = "blank"),
+    plot.margin = unit(c(0, 0, 0, 0), "inches")
+  ) +
+  scale_fill_gradient( 
+    name = "Year 2020",
+    low = "gold", high = "darkorange4",
+    #limits = c(0.0, 0.22),
+    labels = scales::percent
+  ) +
+  labs(
+    x = "",
+    y = "",
+    title = ""
+  )
+  
+```
+
+\
+
+## National suicide rates
+Suicide rates increased 37% between 2000-2018 and decreased 5% between 2018-2020. However, rates returned to their peak in 2022.
+
+
+```{r include = TRUE}
+#| column: body
+#| layout-nrow: 1
+
+fig_1
+current_states_map
+```
+
+## Suicide rate per 100,000 
+
+### Year 2020
+
+```{r include=TRUE, fig.align='center'}
+# 2020 data by state
+# https://www.cdc.gov/suicide/facts/data.html
+
+
+state_rate |>
+  filter(year == "2020") |> 
+  mutate(age_adjusted_rate = age_adjusted_rate/100000) |> 
+  # select(patient_county, rate_fentanyl) |>
+  arrange(desc(age_adjusted_rate)) |> 
+  mutate(group = ifelse(age_adjusted_rate > 0.00015213, 1, 2)) |> # help -- split in 2
+  ggplot(aes(x = reorder(state, age_adjusted_rate), y = age_adjusted_rate)) +
+  geom_col(color = "white", fill = "orange") +
+  coord_cartesian(ylim = c(0, 0.0035)) + # help --- make y-axis wader range
+  coord_flip() +  
+  facet_wrap(~group, scales = "free_y") +
+   labs(y = "", x = "") +
+  geom_text(aes(
+    label = paste0(round(age_adjusted_rate*100000,1), "%"),
+    fontface = 2), hjust = 0, vjust = 0.5, size = 2) +
+  scale_y_continuous(limits = c(0, 0.00035))+
+  theme(
+    strip.text.x = element_blank(),
+    panel.background = element_rect(fill = "white", color = "white"),
+    panel.grid.major = element_line(color = "white", linetype = "blank"),
+    # panel.grid.minor.y = element_line(color = 'gray91', size = 0.5, linetype = 'dashed'),
+    # panel.grid.major.y = element_line(color = 'gray91', size = 0.5, linetype = 'dashed'),
+    axis.text.y = element_text(size = 11),
+    axis.ticks.x = element_blank(),
+    axis.text.x = element_blank(),
+    text=element_text(family="Arial"),
+    panel.spacing = unit(4, "lines")
+  )
+
+```
+
+### Years 2014-2020
+```{r include=TRUE}
+my_color_pal <- c("#e5f5e0", "#a1d99b", "#31a354", "darkgreen")
+
+state_rate2 <- state_rate |> 
+  select(-deaths) |> 
+  mutate(age_adjusted_rate = round(age_adjusted_rate, 1)) |> 
+  pivot_wider(names_from = "year",
+              values_from = "age_adjusted_rate") |> 
+  arrange(desc(`2022`)) 
+
+state_rate2 |>   
+  reactable(
+    style = list(
+      fontFamily = "Arial"
+      ),
+      defaultColDef = colDef(
+        minWidth = 31.5, 
+        align = "center",
+        format = colFormat(digits = 1),
+        style = color_scales(state_rate2, colors = my_color_pal)
+  
+                     
+        ),
+    defaultSorted = "2022",
+    defaultSortOrder = "desc",
+    
+    columns = list(
+      state = colDef(
+        name = "State",
+        align = "left",
+        minWidth = 50)
+      ),
+    
+    static = getOption("reactable.static", TRUE),
+    defaultPageSize = 51
+    
+  ) |> 
+  add_legend(state_rate2, col_name = '2022', 
+             title = 'Suicide Rate', 
+             footer = 'Reported as of 2007',
+             align = "right",
+             colors = my_color_pal)
+  # add_title('Suicide Rate Per 100K') 
+  # add_source('Sources CDC WONDER')
+# https://kcuilla.github.io/reactablefmtr/articles/color_tiles.html#assign-colors-from-another-column
+```
+
+
+## Rate change between years 2014 and 2020
+
+```{r include=TRUE}
+#| column: body
+#| layout-nrow: 1
+
+
+
+previous_states_map <- map_data("state") |> 
+  mutate(state = str_to_title(region)) |> 
+  select(state, long, lat, group) |> 
+  left_join(state_rate, by = join_by(state)) |> 
+  filter(year == "2014") |> 
+  mutate(age_adjusted_rate = age_adjusted_rate/100) |> 
+  ggplot(aes(long, lat)) +
+  geom_polygon(aes(fill = age_adjusted_rate, group = group), color = "white") + 
+  theme(
+    text=element_text(family="Arial"),
+    aspect.ratio = 0.65,
+    # legend.position = "bottom",
+    legend.position = c(0.92, 0.25),
+    legend.background = element_rect(fill = "gray91"),
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    plot.title = element_text(size = 11),
+    panel.background = element_rect(fill = "gray91", color = "gray91"),
+    panel.grid.major = element_line(color = "gray91", linetype = "blank"),
+    panel.grid.minor = element_line(color = "gray91", linetype = "blank"),
+    plot.margin = unit(c(0, 0, 0, 0), "inches")
+  ) +
+  scale_fill_gradient(
+    name = "Year 2014",
+    low = "gold", high = "darkorange4",
+    #limits = c(0.0, 0.22),
+    labels = scales::percent
+  ) +
+  labs(
+    x = "",
+    y = "",
+    title = "")
+
+
+previous_states_map
+current_states_map
+
+```
+
+
+```{r include=TRUE}
+library(gapminder)
+library(tidyr)
+library(dplyr)
+
+library(CGPfunctions)
+
+top_states_2020 <- state_rate |> 
+  filter(year == "2020") |> 
+  arrange(desc(age_adjusted_rate)) |> 
+  slice(1:5)
+  
+
+state_rate2 <- state_rate |> 
+  mutate(
+    year = as.factor(year),
+    state = as.factor(state),
+    age_adjusted_rate = round(age_adjusted_rate, 1)
+  ) |> 
+  filter(state %in% top_states_2020$state) |> 
+  arrange(state) |> 
+  filter(year == "2017" | year == "2018" | year == 
+           "2019" | year == "2020" | year == "2022")
+newggslopegraph(state_rate2, year, age_adjusted_rate, state,
+                LineColor = c("#FBB04E", "#B66353", "#BFBB60", "#849DB1", 
+                              "#7E756D"),
+                LineThickness = 1) +
+  labs(title="Top five States in 2022",
+       subtitle="",
+       caption=""
+       )
+
+
+
+```
+
+
+
+```{r}
+## Suicide rate disparities 
+```
+
+## Data Source
+
+###### - Centers for Disease Control and Prevention, [CDC WONDER]{.italics}. Retrieved from <https://wonder.cdc.gov/>
+
+
+

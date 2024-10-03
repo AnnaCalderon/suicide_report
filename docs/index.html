@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.45">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Anna Calderon">
+<meta name="dcterms.date" content="2024-10-03">
+
+<title>Suicide Trends – suicide_report</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/core-js-2.5.3/shim.min.js"></script>
+<script src="site_libs/react-18.2.0/react.min.js"></script>
+<script src="site_libs/react-18.2.0/react-dom.min.js"></script>
+<script src="site_libs/reactwidget-2.0.0/react-tools.js"></script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="site_libs/reactable-0.4.4/reactable.css" rel="stylesheet">
+<script src="site_libs/reactable-binding-0.4.4/reactable.js"></script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">suicide_report</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#national-suicide-rates" id="toc-national-suicide-rates" class="nav-link active" data-scroll-target="#national-suicide-rates">National suicide rates</a></li>
+  <li><a href="#suicide-rate-per-100000" id="toc-suicide-rate-per-100000" class="nav-link" data-scroll-target="#suicide-rate-per-100000">Suicide rate per 100,000</a>
+  <ul class="collapse">
+  <li><a href="#year-2020" id="toc-year-2020" class="nav-link" data-scroll-target="#year-2020">Year 2020</a></li>
+  <li><a href="#years-2014-2020" id="toc-years-2014-2020" class="nav-link" data-scroll-target="#years-2014-2020">Years 2014-2020</a></li>
+  </ul></li>
+  <li><a href="#rate-change-between-years-2014-and-2020" id="toc-rate-change-between-years-2014-and-2020" class="nav-link" data-scroll-target="#rate-change-between-years-2014-and-2020">Rate change between years 2014 and 2020</a></li>
+  <li><a href="#data-source" id="toc-data-source" class="nav-link" data-scroll-target="#data-source">Data Source</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Suicide Trends</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Anna Calderon </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 3, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><br>
+</p>
+<section id="national-suicide-rates" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="national-suicide-rates">National suicide rates</h2>
+<p>Suicide rates increased 37% between 2000-2018 and decreased 5% between 2018-2020. However, rates returned to their peak in 2022.</p>
+<div>
+
+</div>
+<div class="cell column-body quarto-layout-panel" data-layout-nrow="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="index_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="suicide-rate-per-100000" class="level2">
+<h2 class="anchored" data-anchor-id="suicide-rate-per-100000">Suicide rate per 100,000</h2>
+<section id="year-2020" class="level3">
+<h3 class="anchored" data-anchor-id="year-2020">Year 2020</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="years-2014-2020" class="level3">
+<h3 class="anchored" data-anchor-id="years-2014-2020">Years 2014-2020</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-4da1df683382ee2abd34" style="width:auto;height:auto;"></div>
+<div>
+<div style="text-align: right; margin-bottom: 8px; font-weight: bold; font-size: 90%">Suicide Rate</div>
+<div style="margin: 0;, padding: 0;, float: left; list-style: none;">
+<ul style="list-style: none; margin: 0; padding: 0;">
+<li style="display: block; float: right; width: 30px; margin-bottom: 6px; text-align: center; font-size: 80%; list-style: none;">
+<span style="display: block; float: left; height: 14px; width: 30px; background:#006400;"></span>
+28.7
+</li>
+</ul>
+<ul style="list-style: none; margin: 0; padding: 0;">
+<li style="display: block; float: right; width: 30px; margin-bottom: 6px; text-align: center; font-size: 80%; list-style: none;">
+<span style="display: block; float: left; height: 14px; width: 30px; background:#43AC5F;"></span>
+19.9
+</li>
+</ul>
+<ul style="list-style: none; margin: 0; padding: 0;">
+<li style="display: block; float: right; width: 30px; margin-bottom: 6px; text-align: center; font-size: 80%; list-style: none;">
+<span style="display: block; float: left; height: 14px; width: 30px; background:#79C581;"></span>
+16.3
+</li>
+</ul>
+<ul style="list-style: none; margin: 0; padding: 0;">
+<li style="display: block; float: right; width: 30px; margin-bottom: 6px; text-align: center; font-size: 80%; list-style: none;">
+<span style="display: block; float: left; height: 14px; width: 30px; background:#9AD596;"></span>
+14.1
+</li>
+</ul>
+<ul style="list-style: none; margin: 0; padding: 0;">
+<li style="display: block; float: right; width: 30px; margin-bottom: 6px; text-align: center; font-size: 80%; list-style: none;">
+<span style="display: block; float: left; height: 14px; width: 30px; background:#E5F5E0;"></span>
+6.1
+</li>
+</ul>
+</div>
+<div style="text-align: right; clear: both; font-size: 70%; color: #999">Reported as of 2007</div>
+</div>
+<script type="application/json" data-for="htmlwidget-4da1df683382ee2abd34">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"state":["Montana","Alaska","Wyoming","New Mexico","North Dakota","Idaho","Utah","South Dakota","Oklahoma","Colorado","Nevada","Arizona","Kansas","Oregon","Missouri","Iowa","West Virginia","Arkansas","Kentucky","Vermont","Maine","Tennessee","Hawaii","New Hampshire","Indiana","Alabama","Louisiana","Nebraska","South Carolina","Wisconsin","Ohio","Washington","Minnesota","Michigan","Georgia","North Carolina","Texas","Pennsylvania","Florida","Mississippi","Virginia","Illinois","Delaware","Connecticut","Rhode Island","California","Maryland","New York","Massachusetts","New Jersey","District of Columbia"],"2014":[23.9,22.1,20.6,21,17.8,20,20.5,17.1,19.1,19.9,19.6,18,15.7,18.6,16.3,12.9,18.1,17.3,16,18.7,15.7,14.8,13.8,17.8,14.3,14.5,14.3,13.4,15.2,13.1,12.6,15.2,12.2,13.3,12.6,13.1,12.2,13.3,13.9,12.5,12.9,10.5,13.2,9.8,10.1,10.5,9.8,8.1,8.2,8.3,7.8],"2015":[25.3,26.9,28,23.7,17.5,22.1,22.4,20.4,20.3,19.5,18.4,18.2,16.3,17.8,17.1,13.9,17.4,19.1,17.1,14.8,16,15.7,13.5,16.5,14.4,14.9,15.2,11.7,14.8,14.7,13.9,15.4,13.2,13.8,12.7,13.4,12.5,14,14.4,14,12.7,10.3,12.6,9.9,11.2,10.3,8.8,7.8,8.9,8.3,4.9],"2016":[25.9,25.8,25.2,22.5,19,21.4,21.8,20.2,21,20.5,21.4,17.7,17.9,17.8,18.4,14.6,19.3,18.2,16.8,17.3,15.9,16.3,12.1,17.2,15.4,15.7,14.2,13.1,15.7,14.7,14.2,14.9,13.2,13.3,13.3,13,12.6,14.7,14,12.7,13.2,10.7,11.5,10.1,11.2,10.5,9.4,8.1,8.8,7.2,5.2],"2017":[28.9,27,26.9,23.3,20.1,23.2,22.7,22.5,19.1,20.3,20.3,18.2,19.1,19,18.5,15,21.1,20.8,16.9,18.3,18.9,16.8,15.2,18.9,16.3,16.6,15.2,14.7,16.3,15.4,14.8,16.9,13.8,14.1,13.6,14.3,13.4,15,14,15,13.3,11.2,11.6,10.5,11.8,10.5,9.8,8.1,9.5,8.3,6.6],"2018":[24.9,24.6,25.2,25,19.2,23.9,22.2,19.3,20,21.9,20.8,19.2,19.3,19,19.5,15.5,21.2,18.3,17.5,18.8,18.5,16.6,11.9,19.4,16,16.5,15.1,13.4,15.4,14.8,15.3,15.9,13.1,15,14.6,13.7,13.7,14.9,15.2,13.8,14,11.3,11.4,10.6,9.5,10.9,10.2,8.3,9.9,8.3,7.5],"2019":[26.2,28.5,29.3,24,18.1,20.4,21.2,20.9,20.5,22.1,19.8,18.7,18.2,20.4,18.2,16.7,18.5,18,16.5,16,19.4,17.2,15.5,17.5,14.2,16.3,15,16.1,16.2,14,15.1,15.9,14.4,14.3,14.6,12.5,13.4,14.1,14.5,14.4,12.8,10.9,11.3,11.4,10.7,10.7,10.3,8.3,8.7,8,6.2],"2020":[26.1,27.5,30.5,24.2,18.2,23.2,20.8,21,21.9,21.5,18.2,17.6,18.4,18.3,18.2,18,19.4,19,17.7,18.1,16.4,17.2,12.9,16.4,15,16,13.7,14.9,16.3,14.5,13.8,15.2,13.1,14,13.7,13.2,13.3,12.6,13.2,13.9,13.5,10.5,12.3,9.3,8.5,10,9.2,8,8.4,7.1,5.5],"2021":[32,30.8,32.3,25,20.8,20.5,20.1,23.2,22.1,22.8,21.5,19.5,19.4,19.5,18.7,17.5,20.6,20.6,17.9,20.3,19.5,17,13.7,15.1,16.4,15.8,14.8,15,15.2,15.1,14.7,15.3,13.9,14.3,15.2,13.2,14.2,13.9,14,16.2,13.2,11.1,13.6,10,10.3,10.1,9.7,7.9,8,7.1,6.2],"2022":[28.7,27.6,25.6,24.7,22.5,22.2,22.1,21.6,21.4,21.1,21,20.6,20.5,19.3,19.1,18.5,18.3,18,18,18,17.7,16.7,16.6,16.6,16.4,16.3,15.6,15.6,15.4,15.1,15,14.9,14.8,14.7,14.6,14.4,14.4,14.2,14.1,14,13.3,11.7,11.4,10.6,10.6,10.4,9.5,8.5,8.3,7.7,6.1]},"columns":[{"id":"state","name":"State","type":"character","format":{"cell":{"digits":1},"aggregated":{"digits":1}},"minWidth":50,"align":"left","style":[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]},{"id":"2014","name":"2014","type":"numeric","format":{"cell":{"digits":1},"aggregated":{"digits":1}},"minWidth":31.5,"align":"center","style":[{"background":"#006400FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#10791CFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#1E8A33FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#1A862DFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#40AA5DFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#23913DFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#1F8B35FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#4EB166FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#2B9C4BFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#24923EFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#279643FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#3CA85BFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#6CBF79FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#30A252FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#5FB971FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A4DA9EFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#3AA759FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#4AAF64FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#65BC75FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#2FA151FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#6CBF79FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#7EC885FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#93D292FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#40AA5DFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#89CD8CFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#85CB89FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#89CD8CFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#9CD697FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#76C480FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A1D99BFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A8DBA2FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#76C480FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#ADDEA7FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#9ED799FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A8DBA2FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A1D99BFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#ADDEA7FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#9ED799FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#91D191FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A9DCA3FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A4DA9EFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#C2E6BDFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A0D89AFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#CBEAC6FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#C7E9C2FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#C2E6BDFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#CBEAC6FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#E1F3DCFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#DFF2DAFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#DEF2D9FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#E5F5E0FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"}]},{"id":"2015","name":"2015","type":"numeric","format":{"cell":{"digits":1},"aggregated":{"digits":1}},"minWidth":31.5,"align":"center","style":[{"background":"#117A1DFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#076D0CFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#006400FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#1B872EFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#59B66DFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#259440FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#23913DFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#30A252FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#31A354FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#3CA85BFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#4CB065FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#4FB167FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#6BBF78FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#55B46BFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#5FB971FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#8ECF8FFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#5BB76EFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#42AB5FFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#5FB971FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#81C986FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#6FC17BFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#73C37EFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#93D292FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#68BD77FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#86CC8AFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#7FC885FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#7BC683FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A8DCA3FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#81C986FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#82CA87FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#8ECF8FFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#78C581FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#98D495FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#8FD08FFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#9FD89AFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#95D393FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A1D99BFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#8CCF8EFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#86CC8AFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#8CCF8EFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#9FD89AFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#B5E1AFFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A1D99BFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#B8E2B3FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#ADDEA7FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#B5E1AFFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#C2E6BDFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#CBEAC6FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#C1E6BCFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#C6E8C1FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#E5F5E0FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"}]},{"id":"2016","name":"2016","type":"numeric","format":{"cell":{"digits":1},"aggregated":{"digits":1}},"minWidth":31.5,"align":"center","style":[{"background":"#006400FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#006401FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#046A08FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#188329FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#30A253FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#1F8D36FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#1D8931FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#289845FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#22903BFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#269541FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#1F8D36FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#46AD61FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#42AB5FFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#44AC60FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#3AA75AFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#78C581FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#2EA050FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#3DA95CFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#54B46AFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#4CB065FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#63BB73FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#5CB86FFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A1D99BFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#4EB166FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#6BBF79FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#66BC75FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#7EC885FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#90D190FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#66BC75FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#76C480FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#7EC885FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#73C37EFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#8FD08FFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#8DCF8EFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#8DCF8EFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#92D191FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#98D595FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#76C480FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#82CA87FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#97D494FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#8FD08FFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#AEDEA9FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A6DBA1FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#B4E1AFFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A9DCA3FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#B0DFABFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#BBE3B5FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#C8E9C3FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#C1E6BBFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#D1ECCBFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#E5F5E0FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"}]},{"id":"2017","name":"2017","type":"numeric","format":{"cell":{"digits":1},"aggregated":{"digits":1}},"minWidth":31.5,"align":"center","style":[{"background":"#006400FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#0C7415FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#0D7416FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#24933FFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#45AC61FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#259440FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#289846FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#2A9A48FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#54B46AFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#42AB5FFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#42AB5FFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#62BA73FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#54B46AFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#56B46BFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#5DB870FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#92D191FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#36A557FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#3BA75AFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#75C47FFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#60BA72FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#57B56CFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#77C480FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#8FD08FFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#57B56CFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#7EC885FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#7AC682FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#8FD08FFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#96D494FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#7EC885FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#8CCF8DFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#95D393FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#75C47FFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A3D99DFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#9FD89AFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A4DA9FFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#9CD798FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A6DBA0FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#92D191FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A1D99BFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#92D191FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A7DBA1FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#BAE3B5FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#B7E2B1FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#C1E6BBFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#B5E1AFFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#C1E6BBFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#C7E8C2FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#D7EFD2FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#CAEAC5FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#D5EED0FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#E5F5E0FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"}]},{"id":"2018","name":"2018","type":"numeric","format":{"cell":{"digits":1},"aggregated":{"digits":1}},"minWidth":31.5,"align":"center","style":[{"background":"#026704FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#046A08FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#006400FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#016602FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#32A355FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#0A7112FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#18842AFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#30A253FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#2B9B4AFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#1B872EFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#24923EFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#32A355FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#30A253FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#36A557FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#2FA051FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#79C581FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#218E38FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#43AC60FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#53B369FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#3AA75AFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#40AA5DFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#64BB74FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#B2E0ACFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#30A152FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#6FC17BFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#66BC75FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#80C986FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A0D99BFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#7BC682FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#86CC8AFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#7CC784FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#71C27CFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A4DA9EFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#82CA87FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#8ACE8CFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#9BD697FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#9BD697FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#84CB88FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#7EC885FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#99D596FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#95D393FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#B9E2B3FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#B8E2B2FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#C1E6BBFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#CDEBC8FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#BDE4B8FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#C5E8C0FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#DBF1D6FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#C9E9C3FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#DBF1D6FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#E5F5E0FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"}]},{"id":"2019","name":"2019","type":"numeric","format":{"cell":{"digits":1},"aggregated":{"digits":1}},"minWidth":31.5,"align":"center","style":[{"background":"#137D21FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#056A08FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#006400FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#218F39FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#63BB74FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#42AB5FFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#36A557FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#3BA75AFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#40AA5EFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#2D9E4EFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#4BAF64FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#5BB76EFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#62BA73FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#42AB5FFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#62BA73FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#78C581FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#5EB870FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#65BC75FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#7BC683FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#82CA87FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#51B268FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#71C17CFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#89CD8CFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#6CBF79FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#9CD698FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#7EC884FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#90D190FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#80C986FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#7FC885FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#9FD89AFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#8FD08FFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#83CA88FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#99D596FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#9BD697FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#96D494FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#ADDEA7FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A5DA9FFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#9ED799FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#98D495FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#99D596FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#AADDA4FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#BBE3B5FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#B7E2B2FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#B7E2B1FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#BDE4B7FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#BDE4B7FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#C0E6BBFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#D2EDCDFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#CEEBC9FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#D5EECFFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#E5F5E0FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"}]},{"id":"2020","name":"2020","type":"numeric","format":{"cell":{"digits":1},"aggregated":{"digits":1}},"minWidth":31.5,"align":"center","style":[{"background":"#19852CFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#117A1EFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#006400FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#25933FFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#66BC75FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#2A9B49FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#43AB5FFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#40AA5DFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#34A456FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#39A759FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#66BC75FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#6EC07AFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#63BB74FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#64BC74FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#66BC75FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#68BD77FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#56B46BFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#5BB76EFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#6DBF7AFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#67BD76FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#7EC885FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#73C37EFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A8DCA2FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#7EC885FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#91D191FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#83CA88FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A2D99CFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#92D291FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#7FC985FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#98D495FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A1D99BFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#8ED08FFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A6DBA1FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#9ED799FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A2D99CFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A6DBA0FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A5DA9FFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#ABDDA5FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A6DBA0FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A0D89AFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A3DA9DFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#BCE4B6FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#ADDEA7FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#C5E8C0FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#CCEAC7FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#C0E5BAFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#C6E8C1FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#D0ECCBFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#CDEBC7FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#D7EFD2FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#E5F5E0FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"}]},{"id":"2021","name":"2021","type":"numeric","format":{"cell":{"digits":1},"aggregated":{"digits":1}},"minWidth":31.5,"align":"center","style":[{"background":"#016602FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#086E0EFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#006400FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#299846FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#55B46AFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#58B66DFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#5EB870FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#36A557FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#44AC60FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#3BA75AFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#4CB065FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#65BC75FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#67BD76FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#65BC75FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#70C17BFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#7FC885FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#57B56CFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#57B56CFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#7AC682FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#5BB76EFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#65BC75FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#85CB89FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#AADCA4FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#9ED799FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#8DCF8EFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#95D393FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A1D99BFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#9FD89AFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#9DD798FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#9ED799FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A2D99CFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#9BD697FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A8DCA2FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A5DA9FFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#9DD798FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#AEDEA8FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A6DBA0FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A8DCA2FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A8DBA2FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#90D090FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#AEDEA8FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#BEE5B9FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#ABDDA5FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#C7E8C1FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#C4E7BFFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#C6E8C1FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#C9E9C4FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#D7EFD2FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#D6EFD1FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#DDF2D8FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#E5F5E0FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"}]},{"id":"2022","name":"2022","type":"numeric","format":{"cell":{"digits":1},"aggregated":{"digits":1}},"minWidth":31.5,"align":"center","style":[{"background":"#006400FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#076D0CFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#147D22FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#1A852CFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#289745FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#2A9A48FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#2A9B49FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#2E9F4FFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#2FA151FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#31A354FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#33A455FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#39A759FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#3AA75AFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#4CB065FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#4FB167FF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#58B66DFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#5BB76FFF","color":"white","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#60B971FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#60B971FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#60B971FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#64BB74FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#73C37EFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#74C37FFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#74C37FFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#77C580FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#79C581FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#83CA88FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#83CA88FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#86CC8AFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#8BCE8DFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#8CCF8EFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#8ECF8FFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#8FD090FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#91D190FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#92D291FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#95D393FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#95D393FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#98D495FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#9AD596FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#9BD697FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#A4DA9EFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#B2E0ACFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#B5E1AFFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#BCE4B6FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#BCE4B6FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#BEE5B8FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#C6E8C0FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#CFECCAFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#D1ECCBFF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#D6EFD1FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"},{"background":"#E5F5E0FF","color":"black","fontSize":null,"fontWeight":"normal","transition":"background 1s ease"}]}],"defaultSortDesc":true,"defaultSorted":[{"id":"2022","desc":true}],"defaultPageSize":51,"style":{"fontFamily":"Arial"},"dataKey":"4c6d54a2a3786b0b3fafab15ae51637f"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+</section>
+<section id="rate-change-between-years-2014-and-2020" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="rate-change-between-years-2014-and-2020">Rate change between years 2014 and 2020</h2>
+<div>
+
+</div>
+<div class="cell column-body quarto-layout-panel" data-layout-nrow="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="index_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="data-source" class="level2">
+<h2 class="anchored" data-anchor-id="data-source">Data Source</h2>
+<section id="centers-for-disease-control-and-prevention-cdc-wonder.-retrieved-from-httpswonder.cdc.gov" class="level6">
+<h6 class="anchored" data-anchor-id="centers-for-disease-control-and-prevention-cdc-wonder.-retrieved-from-httpswonder.cdc.gov">- Centers for Disease Control and Prevention, <span class="italics">CDC WONDER</span>. Retrieved from <a href="https://wonder.cdc.gov/" class="uri">https://wonder.cdc.gov/</a></h6>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
