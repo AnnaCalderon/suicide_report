@@ -3,12 +3,12 @@ project:
   output-dir: docs
 
 website:
-  title: "suicide_report"
+  title: "Suicide Report"
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      #- about.qmd
 
 format:
   html:
